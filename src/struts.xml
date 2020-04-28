@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="UserManager" extends="struts-default" abstract="true">
+        <interceptors>
+            <interceptor name="CheckLogin" class="intercept.LoginIntercept"></interceptor>
+            <interceptor-stack name="myIntercept">
+                <interceptor-ref name="defaultStack"></interceptor-ref>
+                <interceptor-ref name="CheckLogin">
+                    <param name="excludeMethods">login</param>
+                </interceptor-ref>
+            </interceptor-stack>
+        </interceptors>
+        <default-interceptor-ref name="myIntercept"></default-interceptor-ref>
+        <global-results>
+            <result name="login" type="redirect">index.jsp</result>
+        </global-results>
+    </package>
+
+
+    <package name="TeacherIntercept" extends="UserManager">
+        <interceptors>
+            <interceptor name="tea_Inter" class="intercept.TeacherIntercept"></interceptor>
+            <interceptor-stack name="intercept_tea">
+                <interceptor-ref name="tea_Inter"></interceptor-ref>
+            </interceptor-stack>
+        </interceptors>
+        <global-results>
+            <result>index.jsp</result>
+        </global-results>
+        <!--    提示请假人员action    -->
+        <action name="noticeAction" method="master_coll_notice" class="action.NoticeAction">
+
+        </action>
+        <!--    读取请假人员action    -->
+        <action name="readAction" class="action.CheckAction" method="read_noCheck">
+
+        </action>
+        <!--   审核action  -->
+        <action name="checkAction" class="action.CheckAction" method="check">
+            <result name="success" type="redirectAction">readAction</result>
+            <result name="error">error_login.jsp</result>
+        </action>
+
+    </package>
+
+    <package name="admin" extends="UserManager" namespace="/">
+        <interceptors>
+            <interceptor name="admin" class="intercept.AdminIntercept">
+                <param name="excludeMethods">login</param>
+            </interceptor>
+            <interceptor-stack name="adminIntercept">
+                <interceptor-ref name="myIntercept"></interceptor-ref>
+                <interceptor-ref name="admin"></interceptor-ref>
+            </interceptor-stack>
+        </interceptors>
+        <default-interceptor-ref name="adminIntercept"></default-interceptor-ref>
+
+        <!--    增加人员action    -->
+        <action name="addUser" class="action.AddUserAction" method="addUserByExcel">
+            <result name="success">stu_index.jsp</result>
+            <result name="error">addUSerExcel.jsp</result>
+        </action>
+        <!--   添加课程     -->
+        <action name="add_course" class="action.Add_CourseAction" method="add">
+            <result name="success"></result>
+            <result name="error"></result>
+        </action>
+
+
+    </package>
+
+
+    <package name="putong" extends="UserManager">
+        <!--    请假action    -->
+        <action name="apply_leave" class="action.LeaveAction" method="apply">
+            <result name="apply_success">apply_leave.jsp</result>
+            <result name="apply_error">apply_leave.jsp</result>
+        </action>
+        <action name="loginAction" class="action.LoginAction" method="login">
+            <result name="success">apply_leave.jsp</result>
+<!--            <result name="stu_index">stu_index.jsp</result>-->
+<!--            <result name="teacher_index">teacher_index.jsp</result>-->
+<!--            <result name="master_index">master_index.jsp</result>-->
+<!--            <result name="sch_leader_index">sch_leader_index.jsp</result>-->
+<!--            <result name="error_login">error_login.jsp</result>-->
+        </action>
+        <action name="select_course_action" class="action.Select_course_Action" method="select">
+            <result name="success">notice.jsp</result>
+            <result name="error">notice.jsp</result>
+        </action>
+        <action name="show_course" class="action.NoticeAction" method="show">
+            <result name="success">notice.jsp</result>
+            <result name="error">notice.jsp</result>
+        </action>
+        <action name="stu_notice" class="action.NoticeAction" method="stu_notice">
+            <result name="success">notice.jsp</result>
+            <result name="error">notice.jsp</result>
+        </action>
+        <action name="update" class="action.LoginAction" method="update">
+            <result name="success"></result>
+            <result name="error"></result>
+        </action>
+        <action name="attendance_notice" class="action.NoticeAction" method="show_attendance">
+            <result name="success">notice.jsp</result>
+        </action>
+    </package>
+</struts>
+
+        <!--        -->
+        <!--    </package>-->
+
+        <!--    <package name="json" extends="json-default" namespace="/">-->
+        <!--        <action name="apply" class="action.LeaveAction" method="apply">-->
+        <!--            <result name="apply_success" type="json">-->
+        <!--                <param name="root">map</param>-->
+        <!--            </result>-->
+        <!--        </action>-->

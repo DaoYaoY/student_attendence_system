@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" class="uk-height-1-1">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/uikit.min.css" />
+    <link rel="stylesheet" href="../css/components/datepicker.css"/>
+    <link rel="stylesheet" href="../css/components/form-file.css"/>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/uikit.min.js"></script>
+    <script src="../js/components/datepicker.js"></script>
+    <title>添加人员</title>
+</head>
+<body class="uk-height-1-1">
+    <div class="uk-vertical-align uk-text-center uk-height-1-1">
+        <div class="uk-vertical-align-middle" style="width: 600px;">
+            <form action="" class="uk-form uk-panel uk-panel-box">
+                <fieldset>
+                    <legend>添加人员</legend>
+                    <table class="uk-table uk-table-hover uk-table-condensed">
+                        
+                        <tr>
+                            <td class="uk-text-left">
+                                <i class="uk-icon-user"></i>学工号:
+                            </td>
+                            <td class="uk-text-left">
+                                <input type="text" placeholder="学号" class="uk-form-small" >
+                            </td>
+                            <td class="uk-text-left">
+                                <i class="uk-icon-calendar"></i>记录时间:
+                            </td>
+                            <td class="uk-text-left">
+                                <div class="uk-form-row"></div><input type="text" placeholder="" class="uk-form-small" data-uk-datepicker="{weekstart:6, format:'YYYY-MM-DD'}" ></div>
+                            </td>
+                        </tr>
+                        <tr>
+                                <td class="uk-text-left">
+                                    <i class="uk-icon-user"></i>记录人： 
+                                </td>
+                                <td class="uk-text-left">
+                                    <div class="uk-form-row"><input type="text" placeholder="" class="uk-form-small" ></div>
+                                </td>
+                                <td class="uk-text-left">
+                                    <i class="uk-icon-circle"></i>学生考勤状况:
+                                </td>
+                                <td class="uk-text-left">
+                                    <input type="text" placeholder="学号" class="uk-form-small" >
+                                </td>
+                        </tr>
+                      
+                    </table>
+                    <button class="uk-button-primary">添加</button>
+                </fieldset>
+            </form>
+            <form id="myForm" class="uk-form uk-panel uk-panel-box" action="addUser" enctype="multipart/form-data" method="post" style="text-align: left">
+                <div class="uk-form-file">
+                    <button class="uk-button">选择文件</button>
+                <input id="excel" class="uk-form-small" name="excel" type="file" multiple="multiple"/></div>
+                <input type="button" id="submitBtn" value="提交" />
+            </form>
+        </div>
+</div>
+
+    
+</body>
+</html>

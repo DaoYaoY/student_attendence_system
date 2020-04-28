@@ -1,0 +1,57 @@
+<%--<%@ taglib prefix="s" uri="/struts-tags" %>
+<%--
+  Created by IntelliJ IDEA.
+  User: D-YY
+  Date: 2020/3/6
+  Time: 17:09
+  To change this template use File | Settings | File Templates.--%>
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html lang="en" class="uk-height-1-1">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="uk/css/uikit.min.css" />
+  <script src="uk/js/jquery.js"></script>
+  <script src="uk/js/uikit.min.js"></script>
+  <title>Document</title>
+</head>
+<body class="uk-height-1-1" style="background: url(./images/g2.jpg);background-size: 100% 100%;">
+<div class="uk-vertical-align uk-text-center uk-height-1-1">
+  <div class="uk-vertical-align-middle" style="width: 300px;">
+    <form action="loginAction" method="post" class="uk-panel uk-panel-box uk-form" style="border: solid 2px #ddd;border-radius: 2em;opacity: 0.8;background-color: rgb(172, 193, 206);">
+      <fieldset>
+        <div>
+          <legend>登录</legend>
+          <table class="uk-table uk-table-hover uk-table-condensed">
+            <tr>
+              <div class="uk-form-row">
+                <td class="uk-text-left">
+                  <i class="uk-icon-user"></i>用户名:
+                </td>
+                <td class="uk-text-left">
+                  <input type="text" name="stdid" class="uk-form-small">
+                </td>
+              </div>
+            </tr>
+            <tr>
+              <div class="uk-form-row">
+                <td class="uk-text-left">
+                  <i class="uk-icon-lock"></i>密码:
+                </td>
+                <td class="uk-text-left">
+                  <input type="password" name="password" class="uk-form-small">
+                </td>
+              </div>
+            </tr>
+          </table>
+          <button class="uk-button uk-button-primary" type="submit" style="border-radius: 0.5em;">登录</button>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>
