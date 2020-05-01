@@ -28,14 +28,16 @@
 
 <body class="uk-height-1-1">
 
-<%
-    String select = (String)session.getAttribute("select");
-    if (select != null){%>
-        <script>
-            alert(<%=select%>);
-        </script>
-<%}
-%>
+<%--<%--%>
+<%--    String select = (String)session.getAttribute("select");--%>
+<%--    if (select != null){%>--%>
+<%--        <script>--%>
+<%--            alert("<%=select%>");--%>
+
+<%--        </script>--%>
+<%--<%--%>
+<%--   }--%>
+<%--%>--%>
 
 <%
 //    People stu = (People) session.getAttribute("user");
@@ -164,11 +166,11 @@
     <s:iterator value="page.getList()" status="status">
         <script>
             $(function () {
-                $("#select").click(function () {
+                $("button[name=select<s:property value="#status.index"></s:property>]").click(function () {
                     let stdid = '<%=user.getStdid()%>';
                     let course_id = '<s:property value="page.getList()[#status.index].getCourse_id()"></s:property>';
                     $.get("select_course_action?std_id=" + stdid + "&course_id=" + course_id, new function (date, status) {
-                        $("#select").text("已选");
+                        $("button[name=select<s:property value="#status.index"></s:property>]").text("已选");
                     })
                     return false;
                 })
@@ -197,7 +199,7 @@
                 <s:property value="page.getList()[#status.index].getCollege_name()"></s:property>
             </td>
             <td>
-                <button id="select">选择</button>
+                <button name="select<s:property value="#status.index"></s:property>">选择</button>
             </td>
 
             </form>

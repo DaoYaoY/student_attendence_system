@@ -60,9 +60,18 @@
         </interceptors>
         <default-interceptor-ref name="adminIntercept"></default-interceptor-ref>
 
+        <action name="user_manager" class="action.Select_college_class" method="execute">
+            <result name="success">addUSerExcel.jsp</result>
+        </action>
+
         <!--    增加人员action    -->
+
+        <action name="adduser" class="action.AddUserAction" method="add_user">
+            <result name="success" type="redirectAction">user_manager</result>
+            <result name="error" type="redirectAction">user_manager</result>
+        </action>
         <action name="addUser" class="action.AddUserAction" method="addUserByExcel">
-            <result name="success">stu_index.jsp</result>
+            <result name="success">addUSerExcel.jsp</result>
             <result name="error">addUSerExcel.jsp</result>
         </action>
         <!--   添加课程     -->
@@ -82,14 +91,14 @@
             <result name="apply_error">apply_leave.jsp</result>
         </action>
         <action name="loginAction" class="action.LoginAction" method="login">
-            <result name="success">apply_leave.jsp</result>
+            <result name="success">header.jsp</result>
 <!--            <result name="stu_index">stu_index.jsp</result>-->
 <!--            <result name="teacher_index">teacher_index.jsp</result>-->
 <!--            <result name="master_index">master_index.jsp</result>-->
 <!--            <result name="sch_leader_index">sch_leader_index.jsp</result>-->
 <!--            <result name="error_login">error_login.jsp</result>-->
         </action>
-        <action name="select_course_action" class="action.Select_course_Action" method="select">
+        <action name="show_selected_course" class="action.NoticeAction" method="show_selected_course">
             <result name="success">notice.jsp</result>
             <result name="error">notice.jsp</result>
         </action>

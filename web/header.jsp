@@ -55,8 +55,8 @@
                 <!-- 这是下拉菜单 -->
                 <div class="uk-dropdown uk-dropdown-small">
                     <ul class="uk-nav uk-nav-dropdown">
-                        <li><a href="select_course.jsp">选课</a></li>
-                        <li><a href="show_course">查看课程</a></li>
+                        <li><a href="show_course">选课</a></li>
+                        <li><a href="show_selected_course">查看课程</a></li>
                     </ul>
                 </div>
             </li>
@@ -130,6 +130,28 @@
                     </ul>
                 </div>
             </li>
+
+
+            <%
+                if (user.getNature()>=2 || user.getNature()==0 ){%>
+            <li class="uk-button-dropdown" data-uk-dropdown="" aria-haspopup="true" aria-expanded="false">
+
+                <!-- 这是拨动下拉菜单的导航项 -->
+                <a href="">人员管理</a>
+
+                <!-- 这是下拉菜单 -->
+                <div class="uk-dropdown uk-dropdown-small">
+                    <ul class="uk-nav uk-nav-dropdown">
+                        <li><a href="show_self_info.jsp">班级人员</a></li>
+                        <%if (user.getNature()==3 || user.getNature()==0){%>
+                        <li><a href="show_class_info.jsp">学院人员</a></li><%}%>
+                        <%
+                            if (user.getNature()==0){%>
+                        <li><a href="user_manager">成员管理</a></li><%}%>
+                    </ul>
+                </div>
+            </li>
+        <%}%>
         </ul>
     </div>
 </nav>

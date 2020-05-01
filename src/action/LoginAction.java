@@ -60,7 +60,7 @@ public class LoginAction extends ActionSupport implements ModelDriven<People> {
             if (rs.next()) {
                 int nature = rs.getInt("nature");
                 String name = rs.getString("name");
-                String class_name = rs.getString("class_name");
+                String class_name = rs.getString("class_id");
                 String college_name = rs.getString("college_name");
                 dao.close();
                 Map session = ActionContext.getContext().getSession();

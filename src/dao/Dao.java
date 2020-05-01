@@ -74,9 +74,11 @@ public class Dao {
     }
     public void close(){
         try {
-            stat.close();
-            conn.close();
-            rs.close();
+            if (stat!= null){stat.close();}
+            if ( conn!=null){conn.close();
+            }
+            if (rs!=null){
+            rs.close();}
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -85,7 +87,7 @@ public class Dao {
     public int get_num(String sql) throws Exception{
         stu_connetion();
         ResultSet rs = executeQuery(sql);
-        if (rs.next()){
+        if (rs!=null && rs.next()){
             int num = rs.getInt(1);
             close();
             return num;
@@ -119,24 +121,22 @@ public class Dao {
         List list = new ArrayList();
         stu_connetion();
         ResultSet rs = executeQuery(sql);
-        while (rs.next()){
-            lt = new LeaveTable();
-            lt.setStdid(rs.getInt("stdid"));
-            lt.setStart_time(rs.getTimestamp("start_time"));
-            lt.setEnd_time(rs.getTimestamp("end_time"));
-            lt.setApply_time(rs.getTimestamp("apply_date"));
-            lt.setLeave_reason(rs.getString("res_leave"));
-            lt.setMaster_statue(rs.getInt("master_statue"));
-            lt.setCollege_statue(rs.getInt("college_statue"));
-            list.add(lt);
+        if (rs!=null) {
+            while (rs.next()) {
+                lt = new LeaveTable();
+                lt.setStdid(rs.getInt("stdid"));
+                lt.setStart_time(rs.getTimestamp("start_time"));
+                lt.setEnd_time(rs.getTimestamp("end_time"));
+                lt.setApply_time(rs.getTimestamp("apply_date"));
+                lt.setLeave_reason(rs.getString("res_leave"));
+                lt.setMaster_statue(rs.getInt("master_statue"));
+                lt.setCollege_statue(rs.getInt("college_statue"));
+                list.add(lt);
 //            System.out.println(lt.getApply_time());
 //            System.out.println(lt.getStdid());
+            }
         }
-        Iterator<LeaveTable> iterator = list.iterator();
-        while (iterator.hasNext()) {
-            LeaveTable leaveTable1 = iterator.next();
-            System.out.println(leaveTable1.getApply_time());
-        }
+        close();
         return list;
     }
 
@@ -157,18 +157,21 @@ public class Dao {
         List list = new ArrayList();
         stu_connetion();
         ResultSet rs = executeQuery(sql);
-        while (rs.next()){
-            course = new Course();
-            course.setCourse_id(rs.getInt("course_id"));
-            course.setCourse_name(rs.getString("course_name"));
+        if (rs!=null) {
+            while (rs.next()) {
+                course = new Course();
+                course.setCourse_id(rs.getInt("course_id"));
+                course.setCourse_name(rs.getString("course_name"));
 //            course.setTeacher_id(rs.getInt("teacher_id"));
-            course.setTime_course(rs.getString("time_course"));
-            course.setDatetime_course(rs.getString("datatime_course"));
-            course.setTeacher_name(rs.getString("name"));
-            course.setCollege_name(rs.getString("college_name"));
-            list.add(course);
+                course.setTime_course(rs.getString("time_course"));
+                course.setDatetime_course(rs.getString("datatime_course"));
+                course.setTeacher_name(rs.getString("name"));
+                course.setCollege_name(rs.getString("college_name"));
+                list.add(course);
+            }
+        }else {
+            close();
         }
-        close();
         return list;
     }
 
@@ -176,6 +179,7 @@ public class Dao {
         List list = new ArrayList();
         stu_connetion();
         ResultSet rs = executeQuery(sql);
+        if (rs!=null){
         while (rs.next()){
             attendance = new Tb_attendance();
             attendance.setId(rs.getInt("id"));
@@ -184,7 +188,8 @@ public class Dao {
             attendance.setAtt_time(rs.getTimestamp("attendance_time"));
             list.add(attendance);
         }
-        close();
+        }else {
+        close();}
         return list;
     }
 

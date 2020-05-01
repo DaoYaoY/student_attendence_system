@@ -20,7 +20,8 @@ public class AdminIntercept extends MethodFilterInterceptor {
         ServletResponse response =  ServletActionContext.getResponse();
         Map session = actionInvocation.getInvocationContext().getSession();
         String path = (String) session.get("path");
-        path =  path.substring(path.lastIndexOf('/') + 1);
+        if(path!=null){
+        path =  path.substring(path.lastIndexOf('/') + 1);}
         People user = (People)session.get("user");
         if (user.getNature()!=0){
             String info = "对不起！您的权限不够";

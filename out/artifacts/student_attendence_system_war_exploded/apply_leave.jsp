@@ -99,7 +99,7 @@
 <body class="uk-height-1-1">
 
 <div class="uk-vertical-align uk-text-center uk-height-1-1">
-    <div class="uk-vertical-align-middle" >
+        <div class="uk-vertical-align-middle" >
         <form action="" class="uk-panel uk-panel-box uk-form" style=" border: solid 2px #ddd;border-radius: 2em;">
             <fieldset>
                 <legend>请假单</legend>
